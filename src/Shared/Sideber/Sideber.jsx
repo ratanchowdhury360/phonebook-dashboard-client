@@ -15,7 +15,7 @@ const Sideber = () => {
                        <NavLink to="/dashboard">Dashboard</NavLink>
                     </li>
                     <li className="text-gray-700 font-medium hover:text-blue-600 cursor-pointer">
-                        <NavLink to="/contacts">Call Logs</NavLink>
+                        <NavLink to="/callLogs">Call Logs</NavLink>
                     </li>
                     <li className="text-gray-700 font-medium hover:text-blue-600 cursor-pointer">
                         <NavLink to="/messages">Appointments</NavLink>
