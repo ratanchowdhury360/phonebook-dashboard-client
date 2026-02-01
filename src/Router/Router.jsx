@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router";
 import HomeLayout from "../Layout/HomeLayout";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import CallLogs from "../Pages/CallLogs/CallLogs";
+import Massages from "../Pages/Massages/Massages";
 
 
  export const router = createBrowserRouter([
@@ -15,6 +16,7 @@ import CallLogs from "../Pages/CallLogs/CallLogs";
           path: "/callLogs",
           Component: CallLogs
         },
+        {path: "/messages", Component: Massages},
         
     ]
   },
