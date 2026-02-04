@@ -1,128 +1,57 @@
-import React from "react";
+import React, { useState } from "react";
+import useFetch from "../hooks/useFetch";
 
 const CallLogs = () => {
+  const { data, loading } = useFetch("/mock.json");
+  const [filter, setFilter] = useState("All");
+
+  if (loading) return <p className="p-6">Loading...</p>;
+
+  const calls =
+    filter === "All"
+      ? data.calls
+      : data.calls.filter((c) => c.type === filter);
+
   return (
     <div className="min-h-screen bg-base-200 p-6">
-      {/* Header */}
-      <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <div className="flex justify-between mb-6">
         <h1 className="text-3xl font-bold">📞 Call Logs</h1>
 
-        <div className="flex gap-2">
-          <select className="select select-bordered">
-            <option>All Calls</option>
-            <option>Incoming</option>
-            <option>Outgoing</option>
-            <option>Missed</option>
-          </select>
-
-          <input
-            type="text"
-            placeholder="Search number or name"
-            className="input input-bordered w-full max-w-xs"
-          />
-        </div>
+        <select
+          className="select select-bordered"
+          onChange={(e) => setFilter(e.target.value)}
+        >
+          <option>All</option>
+          <option>Incoming</option>
+          <option>Outgoing</option>
+          <option>Missed</option>
+        </select>
       </div>
 
-      {/* Stats */}
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-4 mb-6">
-        <div className="stat bg-base-100 shadow rounded-box">
-          <div className="stat-title">Total Calls</div>
-          <div className="stat-value">342</div>
-        </div>
-
-        <div className="stat bg-base-100 shadow rounded-box">
-          <div className="stat-title">Incoming</div>
-          <div className="stat-value text-success">180</div>
-        </div>
-
-        <div className="stat bg-base-100 shadow rounded-box">
-          <div className="stat-title">Outgoing</div>
-          <div className="stat-value text-info">120</div>
-        </div>
-
-        <div className="stat bg-base-100 shadow rounded-box">
-          <div className="stat-title">Missed</div>
-          <div className="stat-value text-error">42</div>
-        </div>
-      </div>
-
-      {/* Call Log List */}
-      <div className="card bg-base-100 shadow">
-        <div className="card-body">
-          <h2 className="card-title mb-4">Recent Calls</h2>
-
-          <div className="overflow-x-auto">
-            <table className="table table-zebra">
-              <thead>
-                <tr>
-                  <th>Contact</th>
-                  <th>Number</th>
-                  <th>Type</th>
-                  <th>Duration</th>
-                  <th>Date</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>John Doe</td>
-                  <td>+1 234 567 890</td>
-                  <td>
-                    <span className="badge badge-success">Incoming</span>
-                  </td>
-                  <td>05:32</td>
-                  <td>Today, 10:24 AM</td>
-                  <td className="flex gap-2">
-                    <button className="btn btn-xs btn-outline">Call</button>
-                    <button className="btn btn-xs btn-error">Delete</button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>Jane Smith</td>
-                  <td>+44 987 654 321</td>
-                  <td>
-                    <span className="badge badge-info">Outgoing</span>
-                  </td>
-                  <td>02:15</td>
-                  <td>Yesterday, 6:40 PM</td>
-                  <td className="flex gap-2">
-                    <button className="btn btn-xs btn-outline">Call</button>
-                    <button className="btn btn-xs btn-error">Delete</button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>Unknown</td>
-                  <td>+91 99887 77665</td>
-                  <td>
-                    <span className="badge badge-error">Missed</span>
-                  </td>
-                  <td>—</td>
-                  <td>Jan 29, 9:10 AM</td>
-                  <td className="flex gap-2">
-                    <button className="btn btn-xs btn-primary">
-                      Save Contact
-                    </button>
-                    <button className="btn btn-xs btn-error">Delete</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          {/* Pagination */}
-          <div className="mt-4 flex justify-end">
-            <div className="join">
-              <button className="join-item btn btn-sm">«</button>
-              <button className="join-item btn btn-sm btn-active">1</button>
-              <button className="join-item btn btn-sm">2</button>
-              <button className="join-item btn btn-sm">3</button>
-              <button className="join-item btn btn-sm">»</button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <table className="table table-zebra bg-base-100">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Number</th>
+            <th>Type</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {calls.map((c) => (
+            <tr key={c.id}>
+              <td>{c.name}</td>
+              <td>{c.number}</td>
+              <td>
+                <span className={`badge badge-${c.type === "Missed" ? "error" : "success"}`}>
+                  {c.type}
+                </span>
+              </td>
+              <td>{c.date}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
