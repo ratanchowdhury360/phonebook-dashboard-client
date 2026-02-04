@@ -1,0 +1,47 @@
+{
+  "contacts": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "phone": "+1 234 567 890",
+      "email": "john@example.com",
+      "favorite": true
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "phone": "+44 987 654 321",
+      "email": "jane@example.com",
+      "favorite": false
+    }
+  ],
+
+  "calls": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "number": "+1 234 567 890",
+      "type": "Incoming",
+      "duration": "05:32",
+      "date": "Today, 10:24 AM"
+    },
+    {
+      "id": 2,
+      "name": "Unknown",
+      "number": "+91 99887 77665",
+      "type": "Missed",
+      "duration": "-",
+      "date": "Jan 29, 9:10 AM"
+    }
+  ],
+
+  "messages": [
+    {
+      "id": 1,
+      "name": "Jane Smith",
+      "avatar": "JS",
+      "lastMessage": "Meeting confirmed",
+      "unread": 3
+    }
+  ]
+}
