@@ -7,7 +7,7 @@ const Dashboard = () => {
 
   if (loading) return <p className="p-6">Loading...</p>;
 
-  const filteredContacts = data.contacts.filter((c) =>
+  const contacts = data.contacts.filter((c) =>
     c.name.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -15,7 +15,6 @@ const Dashboard = () => {
     <div className="min-h-screen bg-base-200 p-6">
       <div className="flex justify-between mb-6">
         <h1 className="text-3xl font-bold">📞 Phone Book</h1>
-
         <input
           className="input input-bordered"
           placeholder="Search contact..."
@@ -35,7 +34,7 @@ const Dashboard = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredContacts.map((c) => (
+              {contacts.map((c) => (
                 <tr key={c.id}>
                   <td>{c.name}</td>
                   <td>{c.phone}</td>

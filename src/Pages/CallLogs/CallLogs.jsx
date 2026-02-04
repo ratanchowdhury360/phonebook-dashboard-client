@@ -16,7 +16,6 @@ const CallLogs = () => {
     <div className="min-h-screen bg-base-200 p-6">
       <div className="flex justify-between mb-6">
         <h1 className="text-3xl font-bold">📞 Call Logs</h1>
-
         <select
           className="select select-bordered"
           onChange={(e) => setFilter(e.target.value)}
