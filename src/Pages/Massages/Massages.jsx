@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useFetch from "../hooks/useFetch";
+import useFetch from "../../hooks/useFetch";
 
 const Messages = () => {
   const { data, loading } = useFetch("/mock.json");
