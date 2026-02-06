@@ -1,33 +1,60 @@
-import React from 'react';
-import { RiMessengerLine } from 'react-icons/ri';
-import { NavLink } from 'react-router';
+import { RiMessengerLine } from "react-icons/ri";
+import { NavLink } from "react-router";
+
 
 const Sideber = () => {
-    return (
-        <div className="bg-gray-100 h-screen p-3 sm:p-4 overflow-y-auto">
-            <div className="mb-6 pb-4 pl-9 pt-2 sm:pt-4">
-                <h2 className="text-lg sm:text-xl font-bold text-gray-800"><RiMessengerLine /></h2>
-            </div>
+  return (
+    <div className="h-screen w-64 bg-[#0f172a]/80 backdrop-blur-lg p-4 border-r border-white/10">
+      
+      {/* Logo */}
+      <div className="mb-8 flex items-center justify-center">
+        <RiMessengerLine className="text-3xl text-[#1677ff]" />
+      </div>
 
-            <div>
-                <ul className="space-y-3">
-                    <li className="text-gray-700 font-medium hover:text-blue-600 cursor-pointer">
-                       <NavLink to="/dashboard">Dashboard</NavLink>
-                    </li>
-                    <li className="text-gray-700 font-medium hover:text-blue-600 cursor-pointer">
-                        <NavLink to="/callLogs">Call Logs</NavLink>
-                    </li>
-                    <li className="text-gray-700 font-medium hover:text-blue-600 cursor-pointer">
-                        <NavLink to="/messages">Massages</NavLink>
-                    </li>
-                    <li className="text-gray-700 font-medium hover:text-blue-600 cursor-pointer">
-                        <NavLink to="/settings">Settings</NavLink>
-                    </li>
-                </ul>
+      {/* Menu */}
+      <ul className="space-y-1">
+        <li className="group">
+          <NavLink
+            to="/dashboard"
+            className="block px-4 py-2 rounded-md text-gray-300 font-medium
+                       hover:bg-[#1677ff]/10 hover:text-[#1677ff] transition"
+          >
+            Dashboard
+          </NavLink>
+        </li>
 
-            </div>
-        </div>
-    );
+        <li className="group">
+          <NavLink
+            to="/callLogs"
+            className="block px-4 py-2 rounded-md text-gray-300 font-medium
+                       hover:bg-[#1677ff]/10 hover:text-[#1677ff] transition"
+          >
+            Call Logs
+          </NavLink>
+        </li>
+
+        <li className="group">
+          <NavLink
+            to="/messages"
+            className="block px-4 py-2 rounded-md text-gray-300 font-medium
+                       hover:bg-[#1677ff]/10 hover:text-[#1677ff] transition"
+          >
+            Messages
+          </NavLink>
+        </li>
+
+        <li className="group">
+          <NavLink
+            to="/settings"
+            className="block px-4 py-2 rounded-md text-gray-300 font-medium
+                       hover:bg-[#1677ff]/10 hover:text-[#1677ff] transition"
+          >
+            Settings
+          </NavLink>
+        </li>
+      </ul>
+    </div>
+  );
 };
 
 export default Sideber;
