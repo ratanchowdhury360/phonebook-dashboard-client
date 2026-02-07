@@ -1,60 +1,74 @@
 import { RiMessengerLine } from "react-icons/ri";
-import { NavLink } from "react-router";
+import { NavLink } from "react-router-dom";
 
+const Sidebar = ({ isOpen, setIsOpen }) => {
+  const linkClass = ({ isActive }) =>
+    `block px-4 py-2 rounded-md font-medium transition
+     ${
+       isActive
+         ? "bg-[#1677ff]/20 text-[#1677ff]"
+         : "text-gray-300 hover:bg-[#1677ff]/10 hover:text-[#1677ff]"
+     }`;
 
-const Sideber = () => {
   return (
-    <div className="h-screen w-64 bg-[#0f172a]/80 backdrop-blur-lg p-4 border-r border-white/10">
-      
-      {/* Logo */}
-      <div className="mb-8 flex items-center justify-center">
-        <RiMessengerLine className="text-3xl text-[#1677ff]" />
-      </div>
+    <>
+      {/* Overlay (mobile only) */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
 
-      {/* Menu */}
-      <ul className="space-y-1">
-        <li className="group">
-          <NavLink
-            to="/dashboard"
-            className="block px-4 py-2 rounded-md text-gray-300 font-medium
-                       hover:bg-[#1677ff]/10 hover:text-[#1677ff] transition"
-          >
-            Dashboard
-          </NavLink>
-        </li>
+      {/* Sidebar */}
+      <aside
+        className={`
+          fixed md:static z-50
+          h-screen w-64
+          bg-[#0f172a]/80 backdrop-blur-lg
+          p-4 border-r border-white/10
+          transform transition-transform duration-300
+          ${isOpen ? "translate-x-0" : "-translate-x-full"}
+          md:translate-x-0
+        `}
+      >
+        {/* Logo */}
+        <div className="mb-8 flex items-center justify-center gap-2">
+          <RiMessengerLine className="text-3xl text-[#1677ff]" />
+          <span className="text-lg font-semibold text-white hidden md:block">
+            PhoneBook
+          </span>
+        </div>
 
-        <li className="group">
-          <NavLink
-            to="/callLogs"
-            className="block px-4 py-2 rounded-md text-gray-300 font-medium
-                       hover:bg-[#1677ff]/10 hover:text-[#1677ff] transition"
-          >
-            Call Logs
-          </NavLink>
-        </li>
+        {/* Menu */}
+        <ul className="space-y-1">
+          <li>
+            <NavLink to="/dashboard" className={linkClass}>
+              Dashboard
+            </NavLink>
+          </li>
 
-        <li className="group">
-          <NavLink
-            to="/messages"
-            className="block px-4 py-2 rounded-md text-gray-300 font-medium
-                       hover:bg-[#1677ff]/10 hover:text-[#1677ff] transition"
-          >
-            Messages
-          </NavLink>
-        </li>
+          <li>
+            <NavLink to="/callLogs" className={linkClass}>
+              Call Logs
+            </NavLink>
+          </li>
 
-        <li className="group">
-          <NavLink
-            to="/settings"
-            className="block px-4 py-2 rounded-md text-gray-300 font-medium
-                       hover:bg-[#1677ff]/10 hover:text-[#1677ff] transition"
-          >
-            Settings
-          </NavLink>
-        </li>
-      </ul>
-    </div>
+          <li>
+            <NavLink to="/messages" className={linkClass}>
+              Messages
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/settings" className={linkClass}>
+              Settings
+            </NavLink>
+          </li>
+        </ul>
+      </aside>
+    </>
   );
 };
 
-export default Sideber;
+export default Sidebar;
