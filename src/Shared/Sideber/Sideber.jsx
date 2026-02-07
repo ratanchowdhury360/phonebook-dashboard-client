@@ -1,5 +1,5 @@
 import { RiMessengerLine } from "react-icons/ri";
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router";
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
   const linkClass = ({ isActive }) =>
@@ -12,7 +12,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
 
   return (
     <>
-      {/* Overlay (mobile only) */}
+      {/* Overlay for mobile */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black/50 z-40 md:hidden"
@@ -47,19 +47,16 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
               Dashboard
             </NavLink>
           </li>
-
           <li>
             <NavLink to="/callLogs" className={linkClass}>
               Call Logs
             </NavLink>
           </li>
-
           <li>
             <NavLink to="/messages" className={linkClass}>
               Messages
             </NavLink>
           </li>
-
           <li>
             <NavLink to="/settings" className={linkClass}>
               Settings
