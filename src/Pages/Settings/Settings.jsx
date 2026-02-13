@@ -1,38 +1,27 @@
 import React, { useEffect, useState } from "react";
 
 const Settings = () => {
-  const [darkMode, setDarkMode] = useState(
-    localStorage.getItem("theme") === "dark"
-  );
-  const [notifications, setNotifications] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
   const [autoBackup, setAutoBackup] = useState(true);
-  const [countryCode, setCountryCode] = useState("+1");
 
-  // Apply theme
   useEffect(() => {
-    const theme = darkMode ? "dark" : "light";
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
+    document.documentElement.setAttribute(
+      "data-theme",
+      darkMode ? "dark" : "light"
+    );
   }, [darkMode]);
 
-  const clearData = () => {
-    localStorage.clear();
-    alert("App data cleared");
-  };
-
   return (
-    <div className="min-h-screen bg-base-200 p-4 sm:p-6">
-      <h1 className="text-2xl sm:text-3xl font-bold mb-6">
-        ⚙️ Settings
-      </h1>
+    <div className="min-h-screen bg-base-200 p-6">
+      <h1 className="text-3xl font-bold mb-6">⚙️ Settings</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-        {/* Appearance */}
+      <div className="grid md:grid-cols-2 gap-6">
+        
         <div className="card bg-base-100 shadow">
-          <div className="card-body space-y-4">
-            <h2 className="font-semibold text-lg">🎨 Appearance</h2>
+          <div className="card-body">
+            <h2 className="font-semibold text-lg">Appearance</h2>
 
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between mt-4">
               <span>Dark Mode</span>
               <input
                 type="checkbox"
@@ -44,42 +33,13 @@ const Settings = () => {
           </div>
         </div>
 
-        {/* Preferences */}
         <div className="card bg-base-100 shadow">
-          <div className="card-body space-y-4">
-            <h2 className="font-semibold text-lg">⚡ Preferences</h2>
+          <div className="card-body">
+            <h2 className="font-semibold text-lg">
+              Backup & Security
+            </h2>
 
-            <div className="flex justify-between items-center">
-              <span>Notifications</span>
-              <input
-                type="checkbox"
-                className="toggle toggle-primary"
-                checked={notifications}
-                onChange={() => setNotifications(!notifications)}
-              />
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <span>Default Country Code</span>
-              <select
-                className="select select-bordered"
-                value={countryCode}
-                onChange={(e) => setCountryCode(e.target.value)}
-              >
-                <option value="+1">🇺🇸 +1 (USA)</option>
-                <option value="+44">🇬🇧 +44 (UK)</option>
-                <option value="+91">🇮🇳 +91 (India)</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        {/* Data & Backup */}
-        <div className="card bg-base-100 shadow">
-          <div className="card-body space-y-4">
-            <h2 className="font-semibold text-lg">☁️ Data & Backup</h2>
-
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between mt-4">
               <span>Auto Backup</span>
               <input
                 type="checkbox"
@@ -89,19 +49,15 @@ const Settings = () => {
               />
             </div>
 
-            <button
-              onClick={clearData}
-              className="btn btn-outline btn-error"
-            >
+            <button className="btn btn-outline btn-error mt-4">
               Clear App Data
             </button>
           </div>
         </div>
       </div>
 
-      {/* Footer */}
-      <p className="text-center opacity-60 text-sm mt-8">
-        PhoneBook App • v1.0.0
+      <p className="text-center mt-10 opacity-60">
+        PhoneBook App • v2.0
       </p>
     </div>
   );
