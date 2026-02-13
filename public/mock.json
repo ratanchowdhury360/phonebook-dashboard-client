@@ -6,13 +6,19 @@
       "phone": "+1 234 567 890",
       "email": "john@example.com",
       "favorite": true,
+      "avatar": "JD",
       "address": {
         "street": "123 Main St",
         "city": "New York",
+        "state": "NY",
+        "zip": "10001",
         "country": "USA"
       },
       "company": "Acme Corp",
       "jobTitle": "Product Manager",
+      "website": "https://acme.com",
+      "birthday": "1990-05-12",
+      "tags": ["VIP", "Client"],
       "notes": "Met at tech conference",
       "createdAt": "2024-11-12T09:15:00Z",
       "lastContacted": "2026-02-06T10:24:00Z"
@@ -23,16 +29,114 @@
       "phone": "+44 987 654 321",
       "email": "jane@example.com",
       "favorite": false,
+      "avatar": "JS",
       "address": {
         "street": "45 Baker Street",
         "city": "London",
+        "state": "Greater London",
+        "zip": "NW1",
         "country": "UK"
       },
       "company": "Smith Consulting",
       "jobTitle": "Business Analyst",
+      "website": "https://smithconsulting.co.uk",
+      "birthday": "1992-08-22",
+      "tags": ["Consultant"],
       "notes": "Prefers email communication",
       "createdAt": "2024-10-01T14:40:00Z",
       "lastContacted": "2026-02-05T16:10:00Z"
+    },
+    {
+      "id": 3,
+      "name": "Rahul Sharma",
+      "phone": "+91 98765 43210",
+      "email": "rahul@techsoft.in",
+      "favorite": true,
+      "avatar": "RS",
+      "address": {
+        "street": "MG Road",
+        "city": "Bangalore",
+        "state": "Karnataka",
+        "zip": "560001",
+        "country": "India"
+      },
+      "company": "TechSoft Pvt Ltd",
+      "jobTitle": "Software Engineer",
+      "website": "https://techsoft.in",
+      "birthday": "1995-03-10",
+      "tags": ["Developer", "Startup"],
+      "notes": "Working on mobile app project",
+      "createdAt": "2025-01-15T11:00:00Z",
+      "lastContacted": "2026-02-01T09:30:00Z"
+    },
+    {
+      "id": 4,
+      "name": "Emily Johnson",
+      "phone": "+1 555 123 4567",
+      "email": "emily@designhub.com",
+      "favorite": false,
+      "avatar": "EJ",
+      "address": {
+        "street": "Sunset Blvd",
+        "city": "Los Angeles",
+        "state": "CA",
+        "zip": "90001",
+        "country": "USA"
+      },
+      "company": "DesignHub",
+      "jobTitle": "UI/UX Designer",
+      "website": "https://designhub.com",
+      "birthday": "1993-11-18",
+      "tags": ["Designer"],
+      "notes": "Creative lead for branding",
+      "createdAt": "2025-03-20T08:20:00Z",
+      "lastContacted": "2026-02-07T14:10:00Z"
+    },
+    {
+      "id": 5,
+      "name": "Michael Brown",
+      "phone": "+49 170 1234567",
+      "email": "michael@autotech.de",
+      "favorite": false,
+      "avatar": "MB",
+      "address": {
+        "street": "Alexanderplatz",
+        "city": "Berlin",
+        "state": "Berlin",
+        "zip": "10178",
+        "country": "Germany"
+      },
+      "company": "AutoTech GmbH",
+      "jobTitle": "Mechanical Engineer",
+      "website": "https://autotech.de",
+      "birthday": "1988-07-05",
+      "tags": ["Engineering"],
+      "notes": "Interested in automation systems",
+      "createdAt": "2025-06-12T13:00:00Z",
+      "lastContacted": "2026-01-28T17:40:00Z"
+    },
+    {
+      "id": 6,
+      "name": "Olivia Wilson",
+      "phone": "+61 412 345 678",
+      "email": "olivia@financepro.au",
+      "favorite": true,
+      "avatar": "OW",
+      "address": {
+        "street": "George Street",
+        "city": "Sydney",
+        "state": "NSW",
+        "zip": "2000",
+        "country": "Australia"
+      },
+      "company": "FinancePro",
+      "jobTitle": "Financial Advisor",
+      "website": "https://financepro.au",
+      "birthday": "1991-12-02",
+      "tags": ["Finance", "Advisor"],
+      "notes": "Handles investment portfolio",
+      "createdAt": "2025-07-01T09:00:00Z",
+      "lastContacted": "2026-02-03T12:15:00Z"
     }
   ],
 
@@ -51,6 +155,18 @@
     },
     {
       "id": 2,
+      "contactId": 3,
+      "name": "Rahul Sharma",
+      "number": "+91 98765 43210",
+      "type": "Outgoing",
+      "duration": "12:10",
+      "date": "2026-02-05T15:40:00Z",
+      "status": "Completed",
+      "recorded": true,
+      "network": "4G"
+    },
+    {
+      "id": 3,
       "contactId": null,
       "name": "Unknown",
       "number": "+91 99887 77665",
@@ -60,6 +176,42 @@
       "status": "Missed",
       "spamSuspected": true,
       "country": "India"
+    },
+    {
+      "id": 4,
+      "contactId": 4,
+      "name": "Emily Johnson",
+      "number": "+1 555 123 4567",
+      "type": "Incoming",
+      "duration": "03:22",
+      "date": "2026-02-06T13:00:00Z",
+      "status": "Answered",
+      "recorded": false,
+      "network": "5G"
+    },
+    {
+      "id": 5,
+      "contactId": 5,
+      "name": "Michael Brown",
+      "number": "+49 170 1234567",
+      "type": "Outgoing",
+      "duration": "08:45",
+      "date": "2026-02-03T18:10:00Z",
+      "status": "Completed",
+      "recorded": false,
+      "network": "LTE"
+    },
+    {
+      "id": 6,
+      "contactId": 6,
+      "name": "Olivia Wilson",
+      "number": "+61 412 345 678",
+      "type": "Incoming",
+      "duration": "04:55",
+      "date": "2026-02-04T07:30:00Z",
+      "status": "Answered",
+      "recorded": true,
+      "network": "VoLTE"
     }
   ],
 
@@ -69,7 +221,7 @@
       "contactId": 2,
       "name": "Jane Smith",
       "avatar": "JS",
-      "unread": 3,
+      "unread": 2,
       "lastMessage": "Meeting confirmed",
       "lastUpdated": "2026-02-07T08:55:00Z",
       "thread": [
@@ -86,12 +238,41 @@
           "content": "Friday works for me.",
           "timestamp": "2026-02-06T17:22:00Z",
           "status": "Read"
-        },
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "contactId": 3,
+      "name": "Rahul Sharma",
+      "avatar": "RS",
+      "unread": 0,
+      "lastMessage": "Project update sent.",
+      "lastUpdated": "2026-02-05T10:15:00Z",
+      "thread": [
         {
-          "messageId": 103,
-          "sender": "Jane Smith",
-          "content": "Meeting confirmed",
-          "timestamp": "2026-02-07T08:55:00Z",
+          "messageId": 201,
+          "sender": "Rahul Sharma",
+          "content": "Project update sent.",
+          "timestamp": "2026-02-05T10:15:00Z",
+          "status": "Delivered"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "contactId": 4,
+      "name": "Emily Johnson",
+      "avatar": "EJ",
+      "unread": 1,
+      "lastMessage": "New design draft ready.",
+      "lastUpdated": "2026-02-07T11:20:00Z",
+      "thread": [
+        {
+          "messageId": 301,
+          "sender": "Emily Johnson",
+          "content": "New design draft ready.",
+          "timestamp": "2026-02-07T11:20:00Z",
           "status": "Delivered"
         }
       ]
@@ -102,6 +283,10 @@
     "syncEnabled": true,
     "defaultCountryCode": "+1",
     "darkMode": true,
-    "lastBackup": "2026-02-06T23:30:00Z"
+    "autoBackup": true,
+    "notificationsEnabled": true,
+    "biometricLock": false,
+    "lastBackup": "2026-02-06T23:30:00Z",
+    "appVersion": "2.0.0"
   }
 }
