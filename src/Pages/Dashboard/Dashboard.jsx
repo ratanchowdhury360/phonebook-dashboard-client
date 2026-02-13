@@ -4,37 +4,45 @@ import useFetch from "../../hooks/useFetch";
 const Dashboard = () => {
   const { data, loading } = useFetch("/mock.json");
   const [search, setSearch] = useState("");
+  const [selected, setSelected] = useState(null);
 
-  if (loading) {
-    return <p className="p-6 text-center">Loading...</p>;
-  }
+  if (loading) return <p className="p-6 text-center">Loading...</p>;
 
   const contacts = data?.contacts?.filter((c) =>
     c.name.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
-    <div className="min-h-screen bg-base-200 p-4 sm:p-6">
+    <div className="min-h-screen bg-base-200 p-6">
+      
       {/* Header */}
-      <div className="flex flex-col sm:flex-row gap-4 sm:justify-between sm:items-center mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold">📞 Phone Book</h1>
-        <input
-          className="input input-bordered w-full sm:w-72"
-          placeholder="Search contact..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-3xl font-bold">📇 Contacts</h1>
+
+        <div className="flex gap-3">
+          <input
+            className="input input-bordered"
+            placeholder="Search..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <button className="btn btn-primary">+ Add</button>
+        </div>
       </div>
 
-      {/* ===== MOBILE VIEW (Cards) ===== */}
-      <div className="grid grid-cols-1 gap-4 md:hidden">
+      {/* Cards */}
+      <div className="grid md:grid-cols-3 gap-6">
         {contacts.map((c) => (
-          <div key={c.id} className="card bg-base-100 shadow">
-            <div className="card-body p-4">
-              <div className="flex justify-between items-start">
-                <h2 className="card-title text-lg">
+          <div
+            key={c.id}
+            className="card bg-base-100 shadow-xl hover:shadow-2xl transition cursor-pointer"
+            onClick={() => setSelected(c)}
+          >
+            <div className="card-body">
+              <div className="flex justify-between">
+                <h2 className="card-title">
                   {c.name}
-                  {c.favorite && <span className="ml-2 text-warning">★</span>}
+                  {c.favorite && <span className="text-warning">★</span>}
                 </h2>
               </div>
 
@@ -42,74 +50,47 @@ const Dashboard = () => {
                 {c.jobTitle} @ {c.company}
               </p>
 
-              <div className="mt-2 space-y-1 text-sm">
+              <div className="mt-3 space-y-1 text-sm">
                 <p>📞 {c.phone}</p>
                 <p>✉️ {c.email}</p>
-                <p>
-                  📍 {c.address.city}, {c.address.country}
-                </p>
+                <p>📍 {c.address.city}, {c.address.country}</p>
               </div>
 
-              <p className="text-xs opacity-60 mt-2">
-                Last contacted:{" "}
-                {new Date(c.lastContacted).toLocaleDateString()}
-              </p>
+              <div className="card-actions justify-end mt-4">
+                <a href={`tel:${c.phone}`} className="btn btn-sm btn-success">
+                  Call
+                </a>
+                <a
+                  href={`mailto:${c.email}`}
+                  className="btn btn-sm btn-info"
+                >
+                  Email
+                </a>
+              </div>
             </div>
           </div>
         ))}
-
-        {contacts.length === 0 && (
-          <p className="text-center opacity-60">No contacts found</p>
-        )}
       </div>
 
-      {/* ===== TABLET & DESKTOP VIEW (Table) ===== */}
-      <div className="hidden md:block card bg-base-100 shadow">
-        <div className="card-body overflow-x-auto">
-          <table className="table table-zebra w-full">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Company</th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>Location</th>
-                <th>Last Contacted</th>
-              </tr>
-            </thead>
-            <tbody>
-              {contacts.map((c) => (
-                <tr key={c.id}>
-                  <td className="font-medium">
-                    {c.name}
-                    {c.favorite && (
-                      <span className="ml-2 text-warning">★</span>
-                    )}
-                  </td>
-                  <td>
-                    <div className="text-sm font-medium">{c.company}</div>
-                    <div className="text-xs opacity-60">{c.jobTitle}</div>
-                  </td>
-                  <td>{c.phone}</td>
-                  <td>{c.email}</td>
-                  <td>
-                    {c.address.city}, {c.address.country}
-                  </td>
-                  <td>
-                    {new Date(c.lastContacted).toLocaleDateString()}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      {/* Modal */}
+      {selected && (
+        <div className="modal modal-open">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">{selected.name}</h3>
+            <p className="py-1">{selected.jobTitle}</p>
+            <p>Company: {selected.company}</p>
+            <p>Website: {selected.website}</p>
+            <p>Birthday: {selected.birthday}</p>
+            <p>Notes: {selected.notes}</p>
 
-          {contacts.length === 0 && (
-            <p className="text-center opacity-60 py-6">
-              No contacts found
-            </p>
-          )}
+            <div className="modal-action">
+              <button className="btn" onClick={() => setSelected(null)}>
+                Close
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
